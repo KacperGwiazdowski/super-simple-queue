@@ -5,9 +5,7 @@ using SuperSimpleQueue.Core.Models;
 using SuperSimpleQueue.Core.Services;
 using SuperSimpleQueue.Core.Utils;
 
-Console.WriteLine("Hello, World!");
-
-var queueName = "testQueue";
+var queueName = "queue";
 
 var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(new SuperSimpleQueue.Core.Configuration.ConnectionStringConfiguration()));
 
@@ -20,7 +18,7 @@ if (!queueManager.CheckIfQueueExist(queueName))
 
 var sender = queueManager.GetSender(queueName);
 
-sender.SendMessage(new AddMessageModel($"test message {DateTime.Now}"));
+sender.SendMessage(new AddMessageModel($"test message body {DateTime.Now}"));
 
 var client = queueManager.GetClient(queueName);
 
