@@ -1,0 +1,6 @@
+@SuperSimpleQueue.Api_HostAddress = http://localhost:5062
+
+GET {{SuperSimpleQueue.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
