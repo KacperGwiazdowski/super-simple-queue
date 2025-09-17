@@ -1,11 +1,21 @@
-﻿using SuperSimpleQueue.Core.Services;
+﻿using LiteDB;
+using SuperSimpleQueue.Core.Services;
+using SuperSimpleQueue.Core.Utils;
+using SuperSimpleQueue.Core.Configuration;
 
 namespace SuperSimpleQueue.Embedded
 {
-    public class LocalQueueManager(IQueuesService queuesService, IMessageService messageService) : IQueueManager
+    public class LocalQueueManager : IQueueManager
     {
-        private readonly IQueuesService _queuesService = queuesService;
-        private readonly IMessageService _messageService = messageService;
+        public LocalQueueManager()
+        {
+            var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(new ConnectionStringConfiguration()));
+            _queuesService = new QueueService(db);
+            _messageService = new MessageService(db);
+        }
+
+        private readonly IQueuesService _queuesService;
+        private readonly IMessageService _messageService;
 
         public async Task<bool> CheckIfQueueExistAsync(string queueName)
         {

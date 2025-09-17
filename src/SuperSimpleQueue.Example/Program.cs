@@ -1,15 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using LiteDB;
 using SuperSimpleQueue.Core.Models;
-using SuperSimpleQueue.Core.Services;
-using SuperSimpleQueue.Core.Utils;
 using SuperSimpleQueue.Embedded;
 
 var queueName = "queue";
 
-var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(new SuperSimpleQueue.Core.Configuration.ConnectionStringConfiguration()));
-
-var queueManager = new LocalQueueManager(new QueueService(db), new MessageService(db));
+var queueManager = new LocalQueueManager();
 
 if (!await queueManager.CheckIfQueueExistAsync(queueName))
 {

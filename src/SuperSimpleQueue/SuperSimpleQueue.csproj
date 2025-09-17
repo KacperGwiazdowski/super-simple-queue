@@ -14,7 +14,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/KacperGwiazdowski/super-simple-queue</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>queue;connector;async</PackageTags>
+    <Tags>queue;connector;async</Tags>
+    <Copyright>Copyright (c) Kacper Gwiazdowski 2025.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
