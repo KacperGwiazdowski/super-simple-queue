@@ -34,8 +34,8 @@ namespace SuperSimpleQueue.Api.Controllers
         [HttpPost("batch/complete")]
         public ActionResult CompleteMessageBatch([FromRoute] string queueName, [FromBody] IEnumerable<Guid> messageIds)
         {
-            _messageService.CompleteMessageBatch(queueName, messageIds);
-            return Ok();
+            var count = _messageService.CompleteMessageBatch(queueName, messageIds);
+            return Ok(count);
         }
 
         [HttpGet("next")]

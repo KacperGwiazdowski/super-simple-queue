@@ -1,27 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using LiteDB;
-using SuperSimpleQueue.Connectors;
 using SuperSimpleQueue.Core.Models;
 using SuperSimpleQueue.Core.Services;
 using SuperSimpleQueue.Core.Utils;
+using SuperSimpleQueue.Embedded;
 
 var queueName = "queue";
 
 var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(new SuperSimpleQueue.Core.Configuration.ConnectionStringConfiguration()));
 
-var queueManager = new QueueManager(new QueueService(db), new MessageService(db));
+var queueManager = new LocalQueueManager(new QueueService(db), new MessageService(db));
 
-if (!queueManager.CheckIfQueueExist(queueName))
+if (!await queueManager.CheckIfQueueExistAsync(queueName))
 {
-    queueManager.CreateQueue(queueName);
+    await queueManager.CreateQueueAsync(queueName);
 }
 
 var sender = queueManager.GetSender(queueName);
 
-sender.SendMessage(new AddMessageModel($"test message body {DateTime.Now}"));
+await sender.SendMessageAsync(new AddMessageModel($"test message body {DateTime.Now}"));
 
 var client = queueManager.GetClient(queueName);
 
-var message = client.GetNextMessage();
+var message = await client.GetNextMessageAsync();
 
-client.CompleteMessage(message.MessageId);
+await client.CompleteMessageAsync(message!.MessageId);

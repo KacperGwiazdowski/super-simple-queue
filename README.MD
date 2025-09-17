@@ -18,6 +18,15 @@ The library is available on NuGet:
 dotnet add package SuperSimpleQueue
 ```
 
+## ⚙️ Operating Modes
+
+SuperSimpleQueue can work in two modes:
+
+- **Embedded (Local) mode** – both sender and client access the same LiteDB file directly on a single server.
+- **Remote (HTTP) mode** – sender and client communicate over HTTP with a server that hosts LiteDB.
+
+
+
 ## 📝 Usage
 A quick example for sending and receiving messages:
 

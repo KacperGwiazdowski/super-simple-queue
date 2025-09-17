@@ -1,14 +1,14 @@
 ﻿using SuperSimpleQueue.Core.Models;
 
-namespace SuperSimpleQueue.Connectors
+namespace SuperSimpleQueue
 {
     public interface IQueueSender
     {
         public string QueueName { get; } 
 
-        public Guid SendMessage(AddMessageModel message);
+        public Task<Guid> SendMessageAsync(AddMessageModel message);
 
-        public IEnumerable<Guid> SendMessageBatch(IEnumerable<AddMessageModel> messages);
+        public Task<IEnumerable<Guid>> SendMessageBatchAsync(IEnumerable<AddMessageModel> messages);
 
     }
 }

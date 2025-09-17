@@ -1,12 +1,12 @@
-﻿namespace SuperSimpleQueue.Connectors
+﻿namespace SuperSimpleQueue
 {
     public interface IQueueManager
     {
-        public void CreateQueue(string queueName);
+        public Task CreateQueueAsync(string queueName);
 
-        public void DeleteQueue(string queueName);
+        public Task DeleteQueueAsync(string queueName);
 
-        public bool CheckIfQueueExist(string queueName);
+        public Task<bool> CheckIfQueueExistAsync(string queueName);
 
         public IQueueSender GetSender(string queueName);
 

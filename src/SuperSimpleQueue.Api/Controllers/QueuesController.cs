@@ -16,6 +16,17 @@ namespace SuperSimpleQueue.Api.Controllers
             return Ok();
         }
 
+        [HttpHead("{queueName}")]
+        public IActionResult CheckQueue(string queueName)
+        {
+            if(_queuesService.CheckIfQueueExist(queueName))
+            {
+                return Ok();
+            }
+            return BadRequest();
+
+        }
+
         [HttpDelete("{queueName}")]
         public IActionResult DeleteQueue(string queueName)
         {
