@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SuperSimpleQueue.Connectors\SuperSimpleQueue.Connectors.csproj" />
+    <ProjectReference Include="..\SuperSimpleQueue\SuperSimpleQueue.csproj" />
   </ItemGroup>
 
 </Project>
