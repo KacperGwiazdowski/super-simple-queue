@@ -31,14 +31,16 @@ jobs:
         run: dotnet build ./src/SuperSimpleQueue/SuperSimpleQueue.csproj --configuration Release --no-restore
 
       - name: Pack with version
-        run: dotnet pack ./src/SuperSimpleQueue/SuperSimpleQueue.csproj \
-               --configuration Release \
-               --no-build \
-               -p:PackageVersion=${{ env.VERSION }} \
-               -o ./artifacts
+        run: |
+          dotnet pack ./src/SuperSimpleQueue/SuperSimpleQueue.csproj \
+            --configuration Release \
+            --no-build \
+            -p:PackageVersion=${{ env.VERSION }} \
+            -o ./artifacts
 
       - name: Publish to NuGet
-        run: dotnet nuget push "./artifacts/*.nupkg" \
-             --api-key ${{ secrets.NUGET_API_KEY }} \
-             --source https://api.nuget.org/v3/index.json \
-             --skip-duplicate
+        run: |
+          dotnet nuget push "./artifacts/*.nupkg" \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
