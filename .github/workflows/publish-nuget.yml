@@ -28,8 +28,7 @@ jobs:
         run: dotnet restore ./src/SuperSimpleQueue/SuperSimpleQueue.csproj
 
       - name: Build
-        run: dotnet build ./src/SuperSimpleQueue/SuperSimpleQueue.csproj \
-               --configuration Release --no-restore
+        run: dotnet build ./src/SuperSimpleQueue/SuperSimpleQueue.csproj --configuration Release --no-restore
 
       - name: Pack with version
         run: dotnet pack ./src/SuperSimpleQueue/SuperSimpleQueue.csproj \
