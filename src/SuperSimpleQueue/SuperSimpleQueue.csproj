@@ -10,7 +10,7 @@
     <PackageId>SuperSimpleQueue</PackageId>
     <Authors>Kacper Gwiazdowski</Authors>
     <Description>SuperSimpleQueue is fast and effortless queue library based on LiteDB</Description>
-    <PackageReadmeFile>../../README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/KacperGwiazdowski/super-simple-queue</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../README.md" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
