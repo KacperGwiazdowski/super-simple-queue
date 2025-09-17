@@ -3,14 +3,12 @@
 **SuperSimpleQueue** is a simple queueing system implementation built on top of [LiteDB](https://www.litedb.org/).  
 It is designed as a lightweight, easy-to-use and setup solution for message queuing in .NET applications, without the need for external brokers (like RabbitMQ or Kafka).
 
----
 
 ## 🚀 Features
 
 - Manage queues
 - Fully backed by a file-based LiteDB database
 
----
 
 ## 📦 Installation
 
