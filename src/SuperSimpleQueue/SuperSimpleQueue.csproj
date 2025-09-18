@@ -14,7 +14,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/KacperGwiazdowski/super-simple-queue</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Tags>queue;connector;async</Tags>
+    <Tags>queue;self-hosted;queues</Tags>
     <Copyright>Copyright (c) Kacper Gwiazdowski 2025.</Copyright>
   </PropertyGroup>
 
@@ -23,8 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SuperSimpleQueue.Core\SuperSimpleQueue.Core.csproj" />
-  </ItemGroup>    
+    <ProjectReference Include="..\SuperSimpleQueue.Core\SuperSimpleQueue.Core.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Target Name="IncludeProjectReferences" AfterTargets="Build">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths)" />
+    </ItemGroup>
+  </Target>
 
 
 </Project>
