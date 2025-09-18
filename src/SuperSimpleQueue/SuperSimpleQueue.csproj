@@ -23,16 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SuperSimpleQueue.Core\SuperSimpleQueue.Core.csproj" >
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </ProjectReference>
+    <ProjectReference Include="..\SuperSimpleQueue.Core\SuperSimpleQueue.Core.csproj" />
   </ItemGroup>
-
-  <Target Name="IncludeProjectReferences" AfterTargets="Build">
-    <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths)" />
-    </ItemGroup>
-  </Target>
-
 
 </Project>

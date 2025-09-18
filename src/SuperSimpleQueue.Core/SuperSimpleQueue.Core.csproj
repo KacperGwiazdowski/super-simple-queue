@@ -6,6 +6,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>SuperSimpleQueue.Core</PackageId>
+    <Authors>Kacper Gwiazdowski</Authors>
+    <Description>SuperSimpleQueue is fast and effortless queue library based on LiteDB</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/KacperGwiazdowski/super-simple-queue</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Tags>queue;self-hosted;queues</Tags>
+    <Copyright>Copyright (c) Kacper Gwiazdowski 2025.</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="5.0.21" />
   </ItemGroup>

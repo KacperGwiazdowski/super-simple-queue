@@ -1,4 +1,4 @@
-name: Publish SuperSimpleQueue NuGet Package
+name: Publish NuGet Packages
 
 on:
   release:
@@ -25,14 +25,22 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Restore dependencies
-        run: dotnet restore ./src/SuperSimpleQueue/SuperSimpleQueue.csproj
+        run: dotnet restore ./src/SuperSimpleQueue/SuperSimpleQueue.csproj ./src/SuperSimpleQueue.Core/SuperSimpleQueue.Core.csproj
 
       - name: Build
-        run: dotnet build ./src/SuperSimpleQueue/SuperSimpleQueue.csproj --configuration Release --no-restore
+        run: |
+          dotnet build ./src/SuperSimpleQueue/SuperSimpleQueue.csproj --configuration Release --no-restore
+          dotnet build ./src/SuperSimpleQueue.Core/SuperSimpleQueue.Core.csproj --configuration Release --no-restore
 
       - name: Pack with version
         run: |
           dotnet pack ./src/SuperSimpleQueue/SuperSimpleQueue.csproj \
+            --configuration Release \
+            --no-build \
+            -p:PackageVersion=${{ env.VERSION }} \
+            -o ./artifacts
+
+          dotnet pack ./src/SuperSimpleQueue.Core/SuperSimpleQueue.Core.csproj \
             --configuration Release \
             --no-build \
             -p:PackageVersion=${{ env.VERSION }} \
