@@ -7,9 +7,9 @@ namespace SuperSimpleQueue.Embedded
 {
     public class LocalQueueManager : IQueueManager
     {
-        public LocalQueueManager()
+        public LocalQueueManager(ConnectionStringConfiguration? connectionStringConfiguration = null)
         {
-            _connectionStringConfiguration = new ConnectionStringConfiguration();
+            _connectionStringConfiguration = connectionStringConfiguration ?? new ConnectionStringConfiguration();
             var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(_connectionStringConfiguration));
             _queuesService = new QueueService(db);
             _messageService = new MessageService(db);
