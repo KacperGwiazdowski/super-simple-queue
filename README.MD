@@ -30,6 +30,8 @@ SuperSimpleQueue can work in two modes:
 ## 📝 Usage
 A quick example for sending and receiving messages (local mode):
 
+### Enqueueing a message
+
 ```C#
 using SuperSimpleQueue.Core.Models;
 using SuperSimpleQueue.Embedded;
@@ -45,14 +47,42 @@ if (!await queueManager.CheckIfQueueExistAsync(queueName))
 
 var sender = queueManager.GetSender(queueName);
 
-await sender.SendMessageAsync(new AddMessageModel($"test message body {DateTime.Now}"));
+await sender.SendMessageAsync(new AddMessageModel($"Test message body {DateTime.Now}"));
+```
+
+### Listening for message and dequeing it
+```C#
+using SuperSimpleQueue.Embedded;
+
+var queueName = "queue";
+
+var queueManager = new LocalQueueManager();
+
+if (!await queueManager.CheckIfQueueExistAsync(queueName))
+{
+    await queueManager.CreateQueueAsync(queueName);
+}
+
+var listener = queueManager.GetListener(queueName);
 
 var client = queueManager.GetClient(queueName);
 
-var message = await client.GetNextMessageAsync();
+Console.WriteLine("Listener started.");
 
-await client.CompleteMessageAsync(message!.MessageId);
+listener.MessagesReadyForProcessingAsync += async () =>
+{
+    Console.WriteLine("New message triggered!");
+
+    var message = await client.GetNextMessageAsync();
+
+    await client.CompleteMessageAsync(message!.MessageId);
+};
+
+listener.StartListening();
+
+await Task.Delay(-1);
 ```
+
 
 ## License
 
