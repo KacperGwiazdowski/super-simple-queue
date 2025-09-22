@@ -42,6 +42,13 @@ namespace SuperSimpleQueue.Core.Services
             return items.Select(x =>  x.MessageId);
         }
 
+        public bool AreMessagesAvailable(string queue)
+        {
+            var collection = GetCollection(queue);
+
+            return collection.Exists(x => x.Status == MessageStatus.New);
+        }
+
         public bool CompleteMessage(string queue, Guid messageId)
         {
             var collection = GetCollection(queue);

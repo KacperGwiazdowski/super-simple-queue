@@ -17,5 +17,7 @@ namespace SuperSimpleQueue.Core.Services
         public bool CompleteMessage(string queue, Guid messageId);
 
         public int CompleteMessageBatch(string queue, IEnumerable<Guid> messageIds);
+
+        public bool AreMessagesAvailable(string queue);
     }
 }

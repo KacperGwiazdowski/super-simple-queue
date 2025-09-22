@@ -11,5 +11,7 @@
         public IQueueSender GetSender(string queueName);
 
         public IQueueClient GetClient(string queueName);
+
+        public IQueueListener GetListener(string queueName);
     }
 }

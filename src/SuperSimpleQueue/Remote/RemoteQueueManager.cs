@@ -34,6 +34,11 @@
             return new RemoteQueueClient(queueName, _httpClient);
         }
 
+        public IQueueListener GetListener(string queueName)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueueSender GetSender(string queueName)
         {
             return new RemoteQueueSender(queueName, _httpClient);

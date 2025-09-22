@@ -13,10 +13,4 @@ if (!await queueManager.CheckIfQueueExistAsync(queueName))
 
 var sender = queueManager.GetSender(queueName);
 
-await sender.SendMessageAsync(new AddMessageModel($"test message body {DateTime.Now}"));
-
-var client = queueManager.GetClient(queueName);
-
-var message = await client.GetNextMessageAsync();
-
-await client.CompleteMessageAsync(message!.MessageId);
+await sender.SendMessageAsync(new AddMessageModel($"Test message body {DateTime.Now}"));

@@ -9,11 +9,13 @@ namespace SuperSimpleQueue.Embedded
     {
         public LocalQueueManager()
         {
-            var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(new ConnectionStringConfiguration()));
+            _connectionStringConfiguration = new ConnectionStringConfiguration();
+            var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(_connectionStringConfiguration));
             _queuesService = new QueueService(db);
             _messageService = new MessageService(db);
         }
 
+        private readonly ConnectionStringConfiguration _connectionStringConfiguration;
         private readonly IQueuesService _queuesService;
         private readonly IMessageService _messageService;
 
@@ -41,6 +43,11 @@ namespace SuperSimpleQueue.Embedded
         {
 
             return new LocalQueueSender(queueName, _messageService);
+        }
+
+        public IQueueListener GetListener(string queueName)
+        {
+            return new LocalQueueListener(queueName, _connectionStringConfiguration, _messageService);
         }
     }
 }
