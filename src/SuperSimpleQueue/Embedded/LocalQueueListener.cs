@@ -56,6 +56,8 @@ namespace SuperSimpleQueue.Embedded
                 return;
             _lastTriggerTime = now;
 
+            await Task.Delay(50);
+
             await CheckQueueMessages();
         }
 
