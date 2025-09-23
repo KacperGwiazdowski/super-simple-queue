@@ -11,6 +11,7 @@ namespace SuperSimpleQueue.Embedded
         {
             _connectionStringConfiguration = connectionStringConfiguration ?? new ConnectionStringConfiguration();
             var db = new LiteDatabase(ConnectionStringBuilder.GetLiteDbConnectionString(_connectionStringConfiguration));
+            Console.WriteLine($"Queue path set to {_connectionStringConfiguration.FileName}");
             _queuesService = new QueueService(db);
             _messageService = new MessageService(db);
         }
